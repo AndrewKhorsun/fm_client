@@ -1,57 +1,17 @@
-import { useState } from "react";
-import {useMutation } from "@tanstack/react-query";
+import { Routes, Route } from "react-router-dom";
+import { FC } from "react";
+import { Layout } from "./components/Layout";
 
-import "./App.scss";
-
-interface RegistrationData {
-  password: string;
-  email: string;
-}
-
-function App() {
-  const [password, setPassword] = useState<string>("");
-  const [login, setLogin] = useState<string>("");
-
-  const mutation = useMutation({
-    mutationFn: async (registrationData: RegistrationData) => {
-      const response = await fetch("http://localhost:3005/registration", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registrationData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Registration failed");
-      }
-
-      const data = await response.json();
-      return data;
-    },
-    onSuccess: (data) => {
-      console.log(data);
-    },
-  });
-
+export const App: FC = () => {
   return (
-    <>
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="login"
-        value={login}
-        onChange={(e) => setLogin(e.target.value)}
-      />
+    <Routes>
+      <Route path="/login" element={<h1>LOGIN</h1>} />
+      <Route path="/" element={<Layout />}>
+        <Route path="personal" element={<h1>Personal</h1>} />
+        <Route path="family" element={<h1>Family</h1>} />
+      </Route>
 
-      <button onClick={() => mutation.mutate({ password, email:login })}>send</button>
-    </>
+      <Route path="*" element={<h1>NOT FOUND</h1>} />
+    </Routes>
   );
-}
-
-export default App;
+};

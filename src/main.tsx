@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import { App } from "./App.tsx";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter as Router } from "react-router-dom";
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -15,11 +15,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <App />
       </QueryClientProvider>
       <ToastContainer
-            limit={3}
-            newestOnTop={true}
-            autoClose={4000}
-            theme="colored"
-          />
+        limit={3}
+        newestOnTop={true}
+        autoClose={4000}
+        theme="colored"
+      />
     </Router>
   </React.StrictMode>
 );
