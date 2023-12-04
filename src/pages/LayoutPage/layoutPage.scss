@@ -1,0 +1,31 @@
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: azure;
+}
+
+.active {
+  background-color: burlywood;
+}
+
+.header {
+  height: 40px;
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.footer {
+  height: 50px;
+  background-color: black;
+  color: wheat;
+}
