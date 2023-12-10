@@ -1,21 +1,14 @@
-import { useActions } from '../../hooks/useActions'
-import { useGetTableQuery } from '../../redux/apiRTKQ/api'
+import { useGetTableQuery } from '../../redux/rtkQuery/personalTableSlice'
 export const PersonalTablePage = () => {
 	const { data, isLoading, refetch } = useGetTableQuery(null)
-	const { refresh } = useActions()
 	if (isLoading) return <div>LOADING....</div>
 
-	const test = async () => {
-		console.log('test')
 
-		refresh()
-	}
 
 	return (
 		<>
 			<h1>Personal table</h1>
 			<button onClick={() => refetch()}>{`Refetch`}</button>
-			<button onClick={() => test()}>{`Refetch`}</button>
 
 			<br />
 			{data?.map((el, index) => {

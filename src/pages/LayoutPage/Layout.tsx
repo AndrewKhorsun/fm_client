@@ -1,9 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
-import { test } from '../../components/test'
 import './layoutPage.scss'
+import { useDispatch } from 'react-redux'
+import { logOut } from '../../redux/auth/authSlice'
 
 export const Layout = () => {
+	const dispatch = useDispatch()
+
 	return (
 		<div className='layout'>
 			<header className='header'>
@@ -12,7 +15,7 @@ export const Layout = () => {
 					<NavLink to='..'>Personal Table</NavLink>
 					<NavLink to='family'>Family Table</NavLink>
 				</nav>
-				<button>Log Out</button>
+				<button onClick={() => dispatch(logOut())}>Log Out</button>
 			</header>
 
 			<main>

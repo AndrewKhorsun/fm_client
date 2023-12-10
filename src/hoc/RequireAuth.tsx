@@ -8,7 +8,7 @@ interface Props {
 
 export const RequireAuth = ({ children }: Props) => {
 	const location = useLocation()
-	const isAuth = !!useAuth().user?.id
+	const isAuth = useAuth()
 
 	if (!isAuth) {
 		return <Navigate to='/login' state={{ from: location }} />

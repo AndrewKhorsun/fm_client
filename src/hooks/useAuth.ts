@@ -1,3 +1,3 @@
 import { useTypedSelector } from './useTypedSelector'
 
-export const useAuth = () => useTypedSelector(state => state.auth)
+export const useAuth = () => useTypedSelector(state => state.auth.user?.email)
