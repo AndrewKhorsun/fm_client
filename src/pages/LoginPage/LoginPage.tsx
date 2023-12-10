@@ -30,24 +30,22 @@ export const LoginPage = () => {
 	) => {
 		event.preventDefault()
 		if (action === 'login') {
-
 			login(loginData)
-
-			console.log(isLoading)
 
 			return
 		}
 		register(registrationData)
 	}
-
 	useEffect(() => {
-		if (user?.id) {
+		if (user) {
 			navigate(fromPage)
 		}
-	}, [fromPage, navigate, user?.id])
+	}, [fromPage, navigate, user])
+
 	useEffect(() => {
 		setIsLogin(!!location.state?.from?.pathname)
 	}, [location.state?.from?.pathname])
+
 
 	return (
 		<div className='login-form__container'>

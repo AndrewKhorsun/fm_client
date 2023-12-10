@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { Layout } from './pages/LayoutPage/Layout'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RequireAuth } from './hoc/RequireAuth'
+import { PersonalTablePage } from './pages/PersonalTable/PersonalTable'
 
 export const App: FC = () => {
 	return (
@@ -16,7 +17,7 @@ export const App: FC = () => {
 					</RequireAuth>
 				}
 			>
-				<Route index element={<h1>Personal</h1>} />
+				<Route index element={<PersonalTablePage />} />
 				<Route path='family' element={<h1>Family</h1>} />
 				<Route path='*' element={<h1>NOT FOUND</h1>} />
 			</Route>

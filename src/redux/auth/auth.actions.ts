@@ -9,10 +9,19 @@ export const register = createAsyncThunk<IAuthData, IAuthRequest>(
 		return response
 	}
 )
+
 export const login = createAsyncThunk<IAuthData, IAuthRequest>(
 	'auth/login',
 	async ({ email, password }) => {
 		const response = await AuthService.login({ email, password })
+		return response
+	}
+)
+export const refresh = createAsyncThunk<IAuthData, undefined>(
+	'auth/refresh',
+	async () => {
+		const response = await AuthService.refreshToken()
+
 		return response
 	}
 )

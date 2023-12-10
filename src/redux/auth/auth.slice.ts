@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IAuthInitialState } from './auth.interface'
-import { login, logout, register } from './auth.actions'
+import { login, logout, refresh, register } from './auth.actions'
 
 const initialState: IAuthInitialState = {
 	user: null,
@@ -36,6 +36,19 @@ export const authSlice = createSlice({
 				state.accessToken = payload.accessToken
 			})
 			.addCase(login.rejected, state => {
+				state.isLoading = false
+				state.user = null
+				state.accessToken = ''
+			})
+			.addCase(refresh.pending, state => {
+				state.isLoading = true
+			})
+			.addCase(refresh.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				state.user = payload.user
+				state.accessToken = payload.accessToken
+			})
+			.addCase(refresh.rejected, state => {
 				state.isLoading = false
 				state.user = null
 				state.accessToken = ''

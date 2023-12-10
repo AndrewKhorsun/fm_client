@@ -23,5 +23,13 @@ export const AuthService = {
 		)
 
 		return response
+	},
+
+	async refreshToken() {
+		const response = await responseHandler(
+			axiosLogin.get<IAuthData>('/refresh')
+		)
+
+		return response
 	}
 }
