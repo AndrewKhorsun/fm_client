@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { authSlice } from './auth/auth.slice'
-import { api } from './apiRTKQ/api'
+import authReducer from './auth/authSlice'
+import { apiSlice } from './rtkQuery/apiSlice'
 
 export const rootReducer = combineReducers({
-	[api.reducerPath]: api.reducer,
-	auth: authSlice.reducer
+	[apiSlice.reducerPath]: apiSlice.reducer,
+	auth: authReducer
 })

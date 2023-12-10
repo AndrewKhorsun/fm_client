@@ -1,10 +1,11 @@
 import './loginPage.scss'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useActions } from '../../hooks/useActions'
-import { useAuth } from '../../hooks/useAuth'
 import { inputHandler } from '../../utils/hooks/scripts/inputHandler'
 import { IAuthRequest } from '../../types/auth'
+import { useDispatch } from 'react-redux'
+import { useLoginMutation } from '../../redux/rtkQuery/authApiSlice'
+import { setCredentials } from '../../redux/auth/authSlice'
 
 const initialState: IAuthRequest = {
 	email: '',
@@ -12,10 +13,10 @@ const initialState: IAuthRequest = {
 }
 
 export const LoginPage = () => {
-	const { isLoading, user } = useAuth()
-	const { login, register } = useActions()
 	const navigate = useNavigate()
 	const location = useLocation()
+	const dispatch = useDispatch()
+	const [login, { isLoading }] = useLoginMutation()
 
 	const [isLogin, setIsLogin] = useState(false)
 	const [loginData, setLoginData] = useState<IAuthRequest>(initialState)
@@ -30,22 +31,16 @@ export const LoginPage = () => {
 	) => {
 		event.preventDefault()
 		if (action === 'login') {
-			login(loginData)
-
+			const userData = await login(loginData).unwrap()
+			dispatch(setCredentials({ ...userData }))
+			navigate(fromPage)
 			return
 		}
-		register(registrationData)
 	}
-	useEffect(() => {
-		if (user) {
-			navigate(fromPage)
-		}
-	}, [fromPage, navigate, user])
 
 	useEffect(() => {
 		setIsLogin(!!location.state?.from?.pathname)
 	}, [location.state?.from?.pathname])
-
 
 	return (
 		<div className='login-form__container'>
@@ -126,7 +121,7 @@ export const LoginPage = () => {
 								handelSubmit(event, 'login')
 							}}
 						>
-							Login
+							{isLoading ? 'Loading...' : 'Login'}
 						</button>
 					</form>
 				</div>

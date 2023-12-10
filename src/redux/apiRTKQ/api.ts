@@ -14,7 +14,6 @@ export const api = createApi({
 			const token = (getState() as TypeRootState).auth.accessToken
 			const refreshToken = getRefreshTokenFromCookie('refreshToken')
 			if (token) headers.set('Authorization', `Bearer ${token}`)
-			console.log('tokenR', refreshToken)
 			if (refreshToken) headers.set('Refresh-Token', refreshToken)
 			return headers
 		}
