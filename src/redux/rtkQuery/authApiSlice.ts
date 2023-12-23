@@ -1,5 +1,10 @@
 import { apiSlice } from './apiSlice'
-import { IActivationRequest, IAuthData, ILoginRequest, IRegistrationRequest } from '../../types/auth'
+import {
+	IActivationResponse,
+	IAuthData,
+	ILoginRequest,
+	IRegistrationRequest
+} from '../../types/auth'
 
 export const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
@@ -10,21 +15,21 @@ export const authApiSlice = apiSlice.injectEndpoints({
 				body: { ...credentials }
 			})
 		}),
-		activation: builder.mutation<IAuthData, IActivationRequest>({
-			query: credentials => ({
-				url: '/activate',
-				method: 'POST',
-				body: { ...credentials }
+		activation: builder.query<IActivationResponse, string>({
+			query: key => ({
+				url: `/activation/${key}`,
+				method: 'GET'
 			})
 		}),
-		registration: builder.mutation<IAuthData, IRegistrationRequest>({
+		registration: builder.mutation<{ message: string }, IRegistrationRequest>({
 			query: credentials => ({
 				url: '/registration',
 				method: 'POST',
 				body: { ...credentials }
 			})
-		}),
+		})
 	})
 })
 
-export const { useLoginMutation } = authApiSlice
+export const { useLoginMutation, useActivationQuery, useRegistrationMutation } =
+	authApiSlice

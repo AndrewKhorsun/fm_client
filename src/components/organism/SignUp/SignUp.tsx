@@ -1,6 +1,7 @@
+import React from 'react'
 import { IRegistrationRequest } from '../../../types/auth'
 import { inputHandler } from '../../../utils/hooks/scripts/inputHandler'
-import { Button } from '../../atoms/button/button'
+import { Button } from '../../atoms/button/Button'
 import './signUp.scss'
 
 interface Props {
@@ -25,7 +26,15 @@ export const SignUp = (props: Props) => {
 				<label htmlFor='chk' aria-hidden='true'>
 					Sign up
 				</label>
-				<input type='text' name='txt' placeholder='User name' />
+				<input
+					type='text'
+					name='txt'
+					placeholder='User name'
+					value={registrationData.userName}
+					onChange={event =>
+						inputHandler(event, setRegistrationData, 'userName')
+					}
+				/>
 				<input
 					type='email'
 					name='email'

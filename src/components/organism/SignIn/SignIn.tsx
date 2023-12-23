@@ -1,7 +1,8 @@
+import React from 'react'
 import { ILoginRequest } from '../../../types/auth'
 import { inputHandler } from '../../../utils/hooks/scripts/inputHandler'
-import { Button } from '../../atoms/button/button'
-import "./signIn.scss"
+import { Button } from '../../atoms/button/Button'
+import './signIn.scss'
 
 interface Props {
 	loginData: ILoginRequest
@@ -26,7 +27,7 @@ export const SignIn = (props: Props) => {
 					type='email'
 					name='email'
 					placeholder='Email'
-          autoComplete='email'
+					autoComplete='email'
 					value={loginData.email}
 					onChange={event => inputHandler(event, setLoginData, 'email')}
 				/>
@@ -34,7 +35,7 @@ export const SignIn = (props: Props) => {
 					type='password'
 					name='password'
 					placeholder='Password'
-          autoComplete="current-password"
+					autoComplete='current-password'
 					value={loginData.password}
 					onChange={event => inputHandler(event, setLoginData, 'password')}
 				/>
