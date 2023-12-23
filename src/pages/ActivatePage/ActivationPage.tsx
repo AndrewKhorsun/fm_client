@@ -9,7 +9,7 @@ export const ActivationPage = () => {
 	const { key } = useParams<{ key: string }>()
 	const { data, isLoading, isError } = useActivationQuery(key ?? '')
 
-	const goLogin = useNavigateCustom('/login', '/budget')
+	const goLogin = useNavigateCustom('/login', '/budget', data?.email)
 
 	useEffect(() => {
 		if (isError) {

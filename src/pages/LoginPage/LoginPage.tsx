@@ -12,11 +12,6 @@ import { SignIn } from '../../components/organism/SignIn/SignIn'
 import { ILoginRequest, IRegistrationRequest } from '../../types/auth'
 import { toast } from 'react-toastify'
 
-const loginInitialState: ILoginRequest = {
-	password: '',
-	email: ''
-}
-
 const regInitialState: IRegistrationRequest = {
 	password: '',
 	email: '',
@@ -27,12 +22,16 @@ export const LoginPage = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
 	const dispatch = useDispatch()
-	const fromPage: string = location.state?.from?.pathname || '/budget/personal'
+	const fromPage = location.state?.from?.pathname || '/budget/personal'
+	const activatedEmail: string | null = location.state?.data || null
 
 	const [isLogin, setIsLogin] = useState(false)
 	const [login, { isLoading: isLoginLoading }] = useLoginMutation()
 	const [registration, { isLoading: isRegLoading }] = useRegistrationMutation()
-	const [loginData, setLoginData] = useState<ILoginRequest>(loginInitialState)
+	const [loginData, setLoginData] = useState<ILoginRequest>({
+		password: '',
+		email: activatedEmail ?? ''
+	})
 	const [registrationData, setRegistrationData] =
 		useState<IRegistrationRequest>(regInitialState)
 	console.log('registrationData', registrationData)

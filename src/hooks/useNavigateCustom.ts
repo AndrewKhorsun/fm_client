@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-export const useNavigateCustom = (to: string, from?: string) => {
+export const useNavigateCustom = (to: string, from?: string, data?: string) => {
 	const navigate = useNavigate()
 
 	return () =>
@@ -9,7 +9,8 @@ export const useNavigateCustom = (to: string, from?: string) => {
 			state: {
 				from: {
 					pathname: from
-				}
+				},
+				data: data
 			}
 		})
 }
