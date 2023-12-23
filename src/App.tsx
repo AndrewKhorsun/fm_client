@@ -9,6 +9,7 @@ export const App: FC = () => {
 	return (
 		<Routes>
 			<Route path='/login' element={<LoginPage />} />
+			<Route path='/activate' element={<h1>ACTIVATE</h1>} />
 			<Route
 				path='/'
 				element={

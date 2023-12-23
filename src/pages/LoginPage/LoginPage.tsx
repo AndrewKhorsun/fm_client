@@ -1,29 +1,36 @@
 import './loginPage.scss'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { inputHandler } from '../../utils/hooks/scripts/inputHandler'
-import { IAuthRequest } from '../../types/auth'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../redux/rtkQuery/authApiSlice'
 import { setCredentials } from '../../redux/auth/authSlice'
+import { SignUp } from '../../components/organism/SignUp/SignUp'
+import { SignIn } from '../../components/organism/SignIn/SignIn'
+import { ILoginRequest, IRegistrationRequest } from '../../types/auth'
 
-const initialState: IAuthRequest = {
+const loginInitialState: ILoginRequest = {
+	password: '',
+	email: ''
+}
+
+const regInitialState: IRegistrationRequest = {
+	password: '',
 	email: '',
-	password: ''
+	userName: ''
 }
 
 export const LoginPage = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
 	const dispatch = useDispatch()
-	const [login, { isLoading }] = useLoginMutation()
+	const fromPage: string = location.state?.from?.pathname || '/'
 
 	const [isLogin, setIsLogin] = useState(false)
-	const [loginData, setLoginData] = useState<IAuthRequest>(initialState)
+	const [login, { isLoading }] = useLoginMutation()
+	const [loginData, setLoginData] = useState<ILoginRequest>(loginInitialState)
 	const [registrationData, setRegistrationData] =
-		useState<IAuthRequest>(initialState)
+		useState<IRegistrationRequest>(regInitialState)
 
-	const fromPage: string = location.state?.from?.pathname || '/'
 
 	const handelSubmit = async (
 		event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -52,79 +59,18 @@ export const LoginPage = () => {
 					checked={isLogin}
 					onChange={e => setIsLogin(e.target.checked)}
 				></input>
-				<div className='login-form__sign-up'>
-					<form>
-						<label htmlFor='chk' aria-hidden='true'>
-							Sign up
-						</label>
-						<input type='text' name='txt' placeholder='User name' />
-						<input
-							type='email'
-							name='email'
-							placeholder='Email'
-							value={registrationData.email}
-							onChange={event =>
-								inputHandler<IAuthRequest>(event, setRegistrationData, 'email')
-							}
-						/>
-						<input
-							type='password'
-							name='password'
-							placeholder='Password'
-							value={registrationData.password}
-							onChange={event =>
-								inputHandler<IAuthRequest>(
-									event,
-									setRegistrationData,
-									'password'
-								)
-							}
-						/>
-						<button
-							className='login-form__button'
-							disabled={isLoading}
-							onClick={event => handelSubmit(event, 'registration')}
-						>
-							Sign up
-						</button>
-					</form>
-				</div>
-				<div className='login-form__login'>
-					<form>
-						<label htmlFor='chk' aria-hidden='true'>
-							Login
-						</label>
-						<input
-							type='email'
-							name='email'
-							placeholder='Email'
-							value={loginData.email}
-							onChange={event =>
-								inputHandler<IAuthRequest>(event, setLoginData, 'email')
-							}
-						/>
-						<input
-							type='password'
-							name='password'
-							placeholder='Password'
-							value={loginData.password}
-							onChange={event =>
-								inputHandler<IAuthRequest>(event, setLoginData, 'password')
-							}
-						/>
-						<button
-							disabled={isLoading}
-							className='login-form__button'
-							onClick={event => {
-								event.preventDefault()
-
-								handelSubmit(event, 'login')
-							}}
-						>
-							{isLoading ? 'Loading...' : 'Login'}
-						</button>
-					</form>
-				</div>
+				<SignUp
+					handelSubmit={handelSubmit}
+					isLoading={isLoading}
+					registrationData={registrationData}
+					setRegistrationData={setRegistrationData}
+				/>
+				<SignIn
+					handelSubmit={handelSubmit}
+					isLoading={isLoading}
+					loginData={loginData}
+					setLoginData={setLoginData}
+				/>
 			</div>
 		</div>
 	)
