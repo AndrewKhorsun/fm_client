@@ -1,0 +1,30 @@
+.navbar {
+  padding: 50px 20px ;
+	display: flex;
+	flex-direction: column;
+  justify-content: space-between;
+	gap: 20px;
+  height: 100vh;
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__link {
+    color: white;
+    font-weight: 600;
+  }
+
+  &__button-logout.button {
+    background-color: rgb(35, 123, 255);
+  }
+}
+
+.active {
+  transition: 0.2s;
+  border-right: 4px solid rgb(255, 230, 0);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}

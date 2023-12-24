@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 html,
 body {
 	margin: 0;
@@ -5,8 +9,9 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-family: 'Jost', sans-serif;
-	background: linear-gradient(to bottom, #0c1e29, #302b63, #24243e);
+	background: #f3f8fd;
 	height: 100vh;
+	box-sizing: border-box;
 }
 
 a {

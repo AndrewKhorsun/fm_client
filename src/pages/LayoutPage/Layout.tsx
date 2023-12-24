@@ -1,37 +1,16 @@
-import { NavLink } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import './layoutPage.scss'
-import { useDispatch } from 'react-redux'
-import { logOut } from '../../redux/auth/authSlice'
-import { useNavigateCustom } from '../../hooks/useNavigateCustom'
-import { Button } from '../../components/atoms/button/Button'
+import { Navbar } from '../../components/organism/Navbar/Navbar'
 
 export const Layout = () => {
-	const dispatch = useDispatch()
-
-	const goLogin = useNavigateCustom('/login', '/budget')
-
-	const logOutUser = () => {
-		dispatch(logOut())
-		goLogin()
-	}
-
 	return (
-		<div className='layout'>
-			<header className='header'>
-				<div>LOGO</div>
-				<nav className='nav-bar'>
-					<NavLink to='personal'>Personal Table</NavLink>
-					<NavLink to='family'>Family Table</NavLink>
-				</nav>
-				<Button className='header__button-logout' onClick={() => logOutUser()}>Log Out</Button>
-			</header>
-
-			<main>
+		<main className='layout'>
+			<aside className='layout__navbar'>
+				<Navbar />
+			</aside>
+			<section className='layout__content'>
 				<Outlet />
-			</main>
-
-			<footer className='footer'>Family money</footer>
-		</div>
+			</section>
+		</main>
 	)
 }
