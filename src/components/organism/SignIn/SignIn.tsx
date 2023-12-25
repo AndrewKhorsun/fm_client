@@ -1,6 +1,6 @@
 import React from 'react'
 import { ILoginRequest } from '../../../types/auth'
-import { inputHandler } from '../../../utils/hooks/scripts/inputHandler'
+import { inputHandler } from '../../../utils/scripts/inputHandler'
 import { Button } from '../../atoms/button/Button'
 import './signIn.scss'
 
@@ -29,7 +29,7 @@ export const SignIn = (props: Props) => {
 					placeholder='Email'
 					autoComplete='email'
 					value={loginData.email}
-					onChange={event => inputHandler(event, setLoginData, 'email')}
+					onChange={event => inputHandler(event.target.value, setLoginData, 'email')}
 				/>
 				<input
 					type='password'
@@ -37,7 +37,7 @@ export const SignIn = (props: Props) => {
 					placeholder='Password'
 					autoComplete='current-password'
 					value={loginData.password}
-					onChange={event => inputHandler(event, setLoginData, 'password')}
+					onChange={event => inputHandler(event.target.value, setLoginData, 'password')}
 				/>
 				<Button
 					disabled={isLoading}

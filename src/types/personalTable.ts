@@ -1,4 +1,5 @@
 export interface IUpdateTable {
+	transactionType: string
 	amount: string
 	category: string
 }
@@ -8,8 +9,7 @@ export interface IPersonalTable {
 	category: string
 	amount: number
 	userId: number
+	transactionType: string
 	createdAt: string
 	updatedAt: string
 }
-
-

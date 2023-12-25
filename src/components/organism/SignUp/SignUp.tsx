@@ -1,6 +1,6 @@
 import React from 'react'
 import { IRegistrationRequest } from '../../../types/auth'
-import { inputHandler } from '../../../utils/hooks/scripts/inputHandler'
+import { inputHandler } from '../../../utils/scripts/inputHandler'
 import { Button } from '../../atoms/button/Button'
 import './signUp.scss'
 
@@ -32,7 +32,7 @@ export const SignUp = (props: Props) => {
 					placeholder='User name'
 					value={registrationData.userName}
 					onChange={event =>
-						inputHandler(event, setRegistrationData, 'userName')
+						inputHandler(event.target.value, setRegistrationData, 'userName')
 					}
 				/>
 				<input
@@ -41,7 +41,9 @@ export const SignUp = (props: Props) => {
 					placeholder='Email'
 					autoComplete='email'
 					value={registrationData.email}
-					onChange={event => inputHandler(event, setRegistrationData, 'email')}
+					onChange={event =>
+						inputHandler(event.target.value, setRegistrationData, 'email')
+					}
 				/>
 				<input
 					type='password'
@@ -50,7 +52,7 @@ export const SignUp = (props: Props) => {
 					autoComplete='current-password'
 					value={registrationData.password}
 					onChange={event =>
-						inputHandler(event, setRegistrationData, 'password')
+						inputHandler(event.target.value, setRegistrationData, 'password')
 					}
 				/>
 				<Button

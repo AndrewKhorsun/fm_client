@@ -1,4 +1,4 @@
-import { IPersonalTable } from '../../types/personalTable'
+import { IPersonalTable, IUpdateTable } from '../../types/personalTable'
 import { apiSlice } from './apiSlice'
 
 export const personalTableSlice = apiSlice.injectEndpoints({
@@ -6,8 +6,15 @@ export const personalTableSlice = apiSlice.injectEndpoints({
 		getTable: builder.query<IPersonalTable[], unknown>({
 			query: () => 'users/get-expenses',
 			keepUnusedDataFor: 5
+		}),
+		updateTable: builder.mutation<IUpdateTable, unknown>({
+			query: credentials => ({
+				url: 'users/update-expenses',
+				method: 'POST',
+				body: credentials 
+			})
 		})
 	})
 })
 
-export const { useGetTableQuery } = personalTableSlice
+export const { useGetTableQuery, useUpdateTableMutation } = personalTableSlice

@@ -5,17 +5,16 @@
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: #573b8a;
+	background: linear-gradient(to top, #ffb400, #ffcc33, #ffdb80, #ffe57f);
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 20px;
 	outline: none;
 	border: none;
 	border-radius: 5px;
-	transition: 0.2s ease-in;
 	cursor: pointer;
 
 	&:hover {
-		background: #6d44b8;
+		background: linear-gradient(to top, #FF8F00, #FFA833, #FFC266, #FFD99F);
 	}
 }
