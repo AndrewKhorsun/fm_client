@@ -4,14 +4,18 @@ import { apiSlice } from './apiSlice'
 export const personalTableSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		getTable: builder.query<IPersonalTable[], unknown>({
-			query: () => 'users/get-expenses',
+			query: (startDate: string) => {
+				console.log('QUERY', startDate)
+
+				return `users/get-expenses/?startDate=${startDate}`
+			},
 			keepUnusedDataFor: 5
 		}),
 		updateTable: builder.mutation<IUpdateTable, unknown>({
 			query: credentials => ({
 				url: 'users/update-expenses',
 				method: 'POST',
-				body: credentials 
+				body: credentials
 			})
 		})
 	})

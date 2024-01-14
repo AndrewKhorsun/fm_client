@@ -16,7 +16,6 @@ export const ActivationPage = () => {
 			goLogin()
 		}
 	}, [goLogin, isError])
-console.log(data?.userName);
 
 	return (
 		<div className='container'>
