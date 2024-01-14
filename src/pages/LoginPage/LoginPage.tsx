@@ -34,7 +34,6 @@ export const LoginPage = () => {
 	})
 	const [registrationData, setRegistrationData] =
 		useState<IRegistrationRequest>(regInitialState)
-	console.log('registrationData', registrationData)
 
 	const handelSubmit = useCallback(
 		async (
