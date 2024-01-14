@@ -21,7 +21,7 @@ export const App: FC = () => {
 			>
 				<Route index element={<Navigate to='personal' />} />
 				<Route path='personal' element={<PersonalTablePage />} />
-				<Route path='family' element={<h1>Family</h1>} />
+				<Route path='family' element={<h1>Family table still in development ...</h1>} />
 			</Route>
 			<Route path='*' element={<Navigate to='/login' />} />
 		</Routes>

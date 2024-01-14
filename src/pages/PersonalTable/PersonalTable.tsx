@@ -5,7 +5,7 @@ import {
 	useUpdateTableMutation
 } from '../../redux/rtkQuery/personalTableSlice'
 import './personalTable.scss'
-import { TableModal } from '../../components/organism/TableModal/TableModal'
+import { TableModal } from '../../components/molecules/TableModal/TableModal'
 import {
 	expenseCategoryOptions,
 	incomeCategoryOptions
@@ -15,7 +15,10 @@ import {
 	CombinedTransaction,
 	combineByCategory
 } from '../../utils/scripts/combineCategories'
-import { formatLargeNumber } from '../../utils/scripts/formatLargeNumber'
+import { DoughnutChart } from '../../components/atoms/charts/Doughnut/DoughnutChart'
+import { CashFlowMonitor } from '../../components/organism/CashFlowMonitor/CashFlowMonitor'
+import { CashFlowGraph } from '../../components/organism/CashFlowGraph/CashFlowGraph'
+import { CashFlowList } from '../../components/organism/CashFlowList/CashFlowList'
 
 export const PersonalTablePage = () => {
 	const [updatePersonalTable] = useUpdateTableMutation()
@@ -40,24 +43,60 @@ export const PersonalTablePage = () => {
 		[data]
 	)
 
+	const preparedLabelsExpense =
+		preparedData
+			?.filter(el => el.transactionType !== 'income')
+			.map(el => el.category) ?? []
+	const preparedLabelsIncome =
+		preparedData
+			?.filter(el => el.transactionType === 'income')
+			.map(el => el.category) ?? []
+
+	const preparedAmountIncome =
+		preparedData
+			?.filter(el => el.transactionType === 'income')
+			.map(el => el.amount) ?? []
+	const preparedAmountExpense =
+		preparedData
+			?.filter(el => el.transactionType !== 'income')
+			.map(el => el.amount) ?? []
+
 	return (
 		<>
-			<h1>Personal table</h1>
-			{isLoading ? <div>LOADING....</div> :			<div className='test'>
-				{preparedData?.map(el => {
-					const classType = el.transactionType === 'income' ? 'green' : 'red'
-					return (
-						<div key={el.category}>
-							<h1 className={`title--color-${classType}`}>{el.category}</h1>
-							<div>{` Amount: ${formatLargeNumber(el.amount)}`}</div>
+			{isLoading ? (
+				<div>LOADING....</div>
+			) : (
+				<div className='personal-table'>
+					<div className='personal-table__cash-flow'>
+						<CashFlowMonitor />
+						<Button onClick={() => setIncomeModal(true)}>Income</Button>{' '}
+						<Button onClick={() => setExpenseModal(true)}>Expense</Button>
+					</div>
+					<div className='personal-table__charts'>
+						{' '}
+						<div className='personal-table__charts--chart'>
+							<DoughnutChart
+								labels={preparedLabelsIncome}
+								amount={preparedAmountIncome}
+								label='Income'
+							/>
 						</div>
-					)
-				})}
-
-				<Button onClick={() => setIncomeModal(true)}>Income</Button>
-				<Button onClick={() => setExpenseModal(true)}>Expense</Button>
-			</div>}
-
+						<div className='personal-table__charts--chart'>
+							<DoughnutChart
+								labels={preparedLabelsExpense}
+								amount={preparedAmountExpense}
+								label='Expense'
+							/>
+						</div>
+					</div>
+					<div className='personal-table__cash-flow-graph'>
+						<CashFlowGraph />
+					</div>
+					<div className='personal-table__cash-flow-list'>
+						<CashFlowList />
+					</div>
+				</div>
+			)}
 
 			<TableModal
 				onCloseModal={setIncomeModal}

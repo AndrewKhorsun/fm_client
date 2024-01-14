@@ -36,7 +36,8 @@ export const TableModal = (props: Props) => {
 	const initialData = {
 		category: '',
 		amount: '',
-		transactionType: categoryType
+		transactionType: categoryType,
+		totalBudget: 0
 	}
 
 	const [transactionData, setTransactionData] =

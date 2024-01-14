@@ -1,30 +1,43 @@
 .navbar {
-  padding: 50px 20px ;
+	padding: 50px 0 50px 20px;
 	display: flex;
 	flex-direction: column;
-  justify-content: space-between;
+	justify-content: space-between;
 	gap: 20px;
-  height: 100vh;
+	height: 100vh;
 
-  &__links {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+	&__links {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
 
-  &__link {
-    color: white;
-    font-weight: 600;
-  }
+	&__link {
+		position: relative;
+		color: white;
+		font-weight: 600;
+		padding: 20px;
 
-  &__button-logout.button {
-    background-color: rgb(35, 123, 255);
-  }
+		&::after {
+			content: '';
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			border-bottom-right-radius: 50%;
+			border-right-color: #f3f8fd;
+		}
+	}
+
+	&__button-logout.button {
+		background-color: rgb(35, 123, 255);
+	}
 }
 
 .active {
-  transition: 0.2s;
-  border-right: 4px solid rgb(255, 230, 0);
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+	background-color: #f3f8fd;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: -20px;
+	color: rgb(35, 123, 255);
+	position: relative;
 }

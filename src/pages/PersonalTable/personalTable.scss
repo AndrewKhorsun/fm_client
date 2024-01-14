@@ -1,15 +1,75 @@
-.test {
-	background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  width: 400px;
-  
-}
+.personal-table {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: 10px;
+	width: calc(100vw - 250px);
+	height: 100vh;
+	padding: 5px;
 
+	&__cash-flow {
+		grid-column: span 12;
+		grid-row: span 1;
 
-.title--color-red{
-  background-color: red;
-}
-.title--color-green{
-  background-color: rgb(34, 255, 0);
+		@media (min-width: 1024px) {
+			grid-column: span 3;
+			grid-row: span 2;
+		}
+
+		background-color: grey;
+	}
+
+	&__charts {
+		grid-column: span 12;
+		grid-row: span 2;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		align-items: center;
+		gap: 10px;
+
+		@media (min-width: 1024px) {
+			grid-column: span 9;
+			grid-row: span 2;
+		}
+
+		background-color: gray;
+
+    &--chart {
+      width: 280px;
+
+      @media (min-width: 1240px) {
+        width: 350px;
+      }
+    }
+	}
+
+	&__cash-flow-graph {
+		grid-column: span 12;
+		grid-row: span 2;
+
+		@media (min-width: 1024px) {
+			grid-column: span 12;
+			grid-row: span 2;
+		}
+
+		background-color: gray;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__cash-flow-list {
+		grid-column: span 12;
+		grid-row: span 2;
+
+		@media (min-width: 1024px) {
+			grid-column: span 12;
+			grid-row: span 2;
+		}
+
+		background-color: grey;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
