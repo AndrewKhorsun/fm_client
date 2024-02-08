@@ -5,7 +5,7 @@
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: linear-gradient(to top, #ffb400, #ffcc33, #ffdb80, #ffe57f);
+	background-color: rgb(35, 123, 255);
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 20px;
@@ -13,8 +13,10 @@
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+	transition: background-color 0.3s ease-in-out;
 
 	&:hover {
-		background: linear-gradient(to top, #FF8F00, #FFA833, #FFC266, #FFD99F);
+		background-color: #ffcc33;
+		color: rgb(35, 123, 255);
 	}
 }

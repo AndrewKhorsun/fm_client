@@ -3,8 +3,7 @@
 
 	&__navbar {
 		position: fixed;
-		max-width: 250px;
-		width: 100%;
+		width: var(--sidebar-width);
 		height: 100vh;
 		background: rgb(53, 111, 211);
 		background: linear-gradient(
@@ -20,6 +19,6 @@
 	}
 
 	&__content {
-		margin-left: 250px;
+		margin-left: var(--sidebar-width);
 	}
 }
