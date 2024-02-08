@@ -1,0 +1,21 @@
+.cash-flow-card {
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	max-width: 150px;
+	width: 100%;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
+	&__title {
+		font-size: 14px;
+	}
+
+	&__amount {
+		font-size: 18px;
+		font-weight: 600;
+	}
+}

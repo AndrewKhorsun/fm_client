@@ -3,10 +3,11 @@ import {
 	expenseCategoryOptions,
 	incomeCategoryOptions
 } from '../../../utils/constants/tableConstants'
-import { formatLargeNumber } from '../../../utils/scripts/formatLargeNumber'
 import { Button } from '../../atoms/button/Button'
+import { PeriodCalendar } from '../../atoms/calendar/PeriodCalendar'
 import { TableModal } from '../../molecules/TableModal/TableModal'
-import Calendar from 'react-calendar'
+import { CashFlowCard } from '../../atoms/cashFlowCard/CashFlowCard'
+import './cashFlowMonitor.scss'
 
 interface Props {
 	expenseModal: boolean
@@ -36,23 +37,15 @@ export const CashFlowMonitorUI = (props: Props) => {
 		handleMonthChange
 	} = props
 	return (
-		<div>
-			<div>
-				<Calendar
-					next2Label={null}
-					prev2Label={null}
-					view='year'
-					onClickMonth={e => {
-						console.log('onClickMonth', e)
-
-						handleMonthChange(e)
-					}}
-				/>
+		<div className='cash-flow-monitor'>
+			<PeriodCalendar handleMonthChange={handleMonthChange} />
+			<div className='cash-flow-monitor__cash'>
+				<div className='cash-flow-monitor__movement__money'>
+					<CashFlowCard title='Income:' amount={income} />
+					<CashFlowCard title='Expense:' amount={expense} />
+				</div>
+				<CashFlowCard title='Total Budget:' amount={totalBudget} />
 			</div>
-			<h1>Month</h1>
-			<h1>INCOME:{formatLargeNumber(income)}</h1>
-			<h1>EXPENSE:{expense}</h1>
-			<h1>Total Budget:{totalBudget}</h1>
 			<Button onClick={() => setIncomeModal(true)}>Income</Button>{' '}
 			<Button onClick={() => setExpenseModal(true)}>Expense</Button>
 			<TableModal

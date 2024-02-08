@@ -5,6 +5,7 @@ import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RequireAuth } from './hoc/RequireAuth'
 import { PersonalTablePage } from './pages/PersonalTable/PersonalTable'
 import { ActivationPage } from './pages/ActivatePage/ActivationPage'
+import './global.scss'
 
 export const App: FC = () => {
 	return (

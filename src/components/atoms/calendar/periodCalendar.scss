@@ -1,0 +1,29 @@
+.period-calendar {
+	position: relative;
+
+	&__button {
+		padding: 10px 5px;
+		background-color: white;
+		border-radius: 4px;
+		outline: none;
+		border: none;
+		cursor: pointer;
+	}
+
+	&__calendar {
+		position: absolute;
+		top: 10%;
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+		transition:
+			opacity 0.3s,
+			transform 0.3s;
+
+		&.open {
+			opacity: 1;
+			pointer-events: all;
+			transform: translateY(50px);
+		}
+	}
+}

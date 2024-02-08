@@ -2,20 +2,22 @@
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	gap: 10px;
-	width: calc(100vw - 250px);
+	width: calc(100vw - var(--sidebar-width));
 	height: 100vh;
 	padding: 5px;
 
 	&__cash-flow {
 		grid-column: span 12;
 		grid-row: span 1;
+		border-radius: 5px;
+		padding: 20px 10px;
 
 		@media (min-width: 1024px) {
 			grid-column: span 3;
 			grid-row: span 2;
 		}
 
-		background-color: grey;
+		background: linear-gradient(to top, #CCE5FF, #6699CC)
 	}
 
 	&__charts {
@@ -32,7 +34,7 @@
 			grid-row: span 2;
 		}
 
-		background-color: gray;
+		background: linear-gradient(to top, #CCE5FF, #6699CC);
 
     &--chart {
       width: 280px;
@@ -52,7 +54,7 @@
 			grid-row: span 2;
 		}
 
-		background-color: gray;
+		background: linear-gradient(to top, #CCE5FF, #6699CC);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -67,7 +69,7 @@
 			grid-row: span 2;
 		}
 
-		background-color: grey;
+		background: linear-gradient(to bottom, #CCE5FF, #6699CC);
 		display: flex;
 		justify-content: center;
 		align-items: center;
