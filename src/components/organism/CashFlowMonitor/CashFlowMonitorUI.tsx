@@ -43,8 +43,8 @@ export const CashFlowMonitorUI = (props: Props) => {
 				<div className='cash-flow-monitor__movement__money'>
 					<CashFlowCard title='Income:' amount={income} />
 					<CashFlowCard title='Expense:' amount={expense} />
-				</div>
 				<CashFlowCard title='Total Budget:' amount={totalBudget} />
+				</div>
 			</div>
 			<Button onClick={() => setIncomeModal(true)}>Income</Button>{' '}
 			<Button onClick={() => setExpenseModal(true)}>Expense</Button>

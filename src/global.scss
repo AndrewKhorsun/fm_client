@@ -1,19 +1,22 @@
 :root {
-  --sidebar-width-small: 100px;
+  --sidebar-width-small: 80px;
   --sidebar-width-medium: 150px;
   --sidebar-width-large: 200px; 
-  --sidebar-width-xlarge: 250px; 
+  --sidebar-width-x-large: 250px;
+  --hidden: block;
 }
 
 @media screen and (max-width: 480px) {
   :root {
     --sidebar-width: var(--sidebar-width-small); 
+    --hidden: none;
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
   :root {
     --sidebar-width: var(--sidebar-width-medium);
+    --hidden: none;
   }
 }
 
@@ -25,6 +28,6 @@
 
 @media screen and (min-width: 1025px) {
   :root {
-    --sidebar-width: var(--sidebar-width-xlarge);
+    --sidebar-width: var(--sidebar-width-x-large);
   }
 }
