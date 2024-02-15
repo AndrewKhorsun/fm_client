@@ -59,6 +59,7 @@ export const TableModal = (props: Props) => {
 	return (
 		<ModalBox {...props}>
 			<input
+				className='table-modal__input'
 				type='text'
 				value={transactionData.amount ?? ''}
 				onChange={e =>
@@ -74,7 +75,7 @@ export const TableModal = (props: Props) => {
 				value={selectedOption}
 				onChange={handleSelectChange}
 			/>
-			<Button onClick={() => onClickButton()}>{buttonText}</Button>
+			<Button className='table-modal__add-btn' onClick={() => onClickButton()}>{buttonText}</Button>
 		</ModalBox>
 	)
 }

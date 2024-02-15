@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import './periodCalendar.scss'
 import moment from 'moment'
 import Calendar from 'react-calendar'
+import { SlArrowDown, SlArrowUp } from 'react-icons/sl'
 
 interface Props {
 	handleMonthChange: (newMonth: Date) => void
@@ -19,11 +20,14 @@ export const PeriodCalendar = (props: Props) => {
 		[isOpenCalendar]
 	)
 
-	const onClickDate = useCallback((date: Date) => {
-		setIsOpenCalendar(false)
-		setDateCalendar(moment(date).format('MMMM YYYY'))
-		handleMonthChange(date)
-	}, [handleMonthChange])
+	const onClickDate = useCallback(
+		(date: Date) => {
+			setIsOpenCalendar(false)
+			setDateCalendar(moment(date).format('MMMM YYYY'))
+			handleMonthChange(date)
+		},
+		[handleMonthChange]
+	)
 
 	return (
 		<div className='period-calendar'>
@@ -32,6 +36,7 @@ export const PeriodCalendar = (props: Props) => {
 				className='period-calendar__button'
 			>
 				{dateCalendar}
+				{isOpenCalendar ? <SlArrowUp /> : <SlArrowDown />}
 			</button>
 
 			<Calendar
