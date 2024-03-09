@@ -13,8 +13,8 @@
 	border-radius: 60px;
 	display: grid;
 	place-items: center;
-  color: white;
-  padding: 10px 20px;
+	color: rgb(246, 253, 185);
+	padding: 10px 20px;
 	text-align: center;
 
 	&::before {
@@ -25,12 +25,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: rgb(43, 98, 99, 0.6);
-		z-index: 1;
+		background: linear-gradient(to top, #cce5ff, #6699cc);
 		filter: blur(1px);
-	}
-
-	&__button{
-		z-index: 2;
 	}
 }

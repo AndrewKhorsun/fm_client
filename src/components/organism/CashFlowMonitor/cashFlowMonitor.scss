@@ -1,6 +1,7 @@
 .cash-flow-monitor {
   &__cash {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -15,12 +16,20 @@
     }
   }
 
-  &__movement__money {
+  &__movement-money {
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  
+  
+    &--income {
+      background-color: rgb(196, 253, 203);
+    }
+    &--expense {
+      background-color: rgb(253, 190, 190);
+    }
   }
 }
 
